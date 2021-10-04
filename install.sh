@@ -10,14 +10,19 @@ else
 fi
 cd -
 
-#curl https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip -o firacodetemp.zip
-#unzip firacodetemp.zip -d /
-#rm firacodetemp.zip
+# Ensure Starship is installed and up to date.
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --force
 
-# Ensure starship is installed.
+# Ensure Starship config is downloaded.
 
-# Ensure starship config is downloaded.
-
-# Ensure starship is initialized.
+# Ensure Starship is initialized.
+shell_name=$(sh -c 'ps -p $$ -o ppid=' | xargs ps -o comm= -p)
+if [[ $shell_name == "-zsh" ]]; then
+    eval "$(starship init zsh)"
+elif [[ $shell_name == "-bash" ]]; then
+    eval "$(starship init bash)"
+elif [[ $shell_name == "-fish" ]]; then
+    starship init fish | source
+fi
 
 # Ensure terminal dotfile is updated to initialize starship on every new terminal session.
