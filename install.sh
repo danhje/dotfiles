@@ -16,7 +16,6 @@ sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --force
 # Ensure Starship config is downloaded.
 mkdir -p ~/.config
 wget -nc -O ~/.config/starship.toml "https://raw.githubusercontent.com/danhje/dotfiles/main/starship.toml"
-                                     https://raw.githubusercontent.com/danhje/dotfiles/main/starship.toml
 
 # Ensure Starship is initialized.
 shell_name=$(sh -c 'ps -p $$ -o ppid=' | xargs ps -o comm= -p)
