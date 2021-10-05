@@ -1,0 +1,7 @@
+### Common RC ###
+
+if test -f "~/.localrc"; then
+    source ~/.localrc
+fi
+
+export PATH="~/.poetry/bin:$PATH"
