@@ -13,18 +13,26 @@ cd -
 # Ensure Starship is installed and up to date.
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --force
 
-# Ensure Starship config is downloaded.
-mkdir -p ~/.config
-wget -nc -O ~/.config/starship.toml "https://raw.githubusercontent.com/danhje/dotfiles/main/starship.toml"
+# Ensure dotfiles are downloaded.
+mkdir -p ~/.dotfiles
+wget -O ~/.dotfiles/starship.toml "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/starship.toml"
+wget -O ~/.dotfiles/.commonrc "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/.commonrc"
+wget -O ~/.dotfiles/.zshrc "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/.zshrc"
+wget -O ~/.dotfiles/.bashrc "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/.bashrc"
 
-# Ensure Starship is initialized.
+# Ensure dotfiles are symlinked.
+rm -f ~/.zshrc
+ln -s ~/.dotfiles/.zshrc ~/.zshrc
+rm -f ~/.bashrc
+ln -s ~/.dotfiles/.bashrc ~/.bashrc
+
+# Source dotfiles.
 shell_name=$(sh -c 'ps -p $$ -o ppid=' | xargs ps -o comm= -p)
 if [[ $shell_name == "-zsh" ]]; then
-    eval "$(starship init zsh)"
+    source ~/.zshrc
 elif [[ $shell_name == "-bash" ]]; then
-    eval "$(starship init bash)"
-elif [[ $shell_name == "-fish" ]]; then
-    starship init fish | source
+    source ~/.bashrc
 fi
 
-# Ensure terminal dotfile is updated to initialize starship on every new terminal session.
+# Finished
+echo "Done. Remember to move or symlink any local rc to ~/.localrc"
