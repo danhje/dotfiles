@@ -25,6 +25,9 @@ rm -f ~/.zshrc
 ln -s ~/.dotfiles/.zshrc ~/.zshrc
 rm -f ~/.bashrc
 ln -s ~/.dotfiles/.bashrc ~/.bashrc
+mkdir ~/.config
+rm -f ~/.config/starship.toml
+ln -s ~/.dotfiles/starship.toml ~/.config/starship.toml
 
 # Source dotfiles.
 shell_name=$(sh -c 'ps -p $$ -o ppid=' | xargs ps -o comm= -p)
