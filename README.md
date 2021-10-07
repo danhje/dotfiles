@@ -7,7 +7,7 @@ I use zsh on my Mac, but also have to use bash on other systems from time to tim
 To get this config without any modification:
 
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/danhje/dotfiles/main/install.sh)"
+source <(curl -fsSL https://raw.githubusercontent.com/danhje/dotfiles/main/install.sh)
 ```
 
 ⚠️ Warning, this will replace your config with mine!

@@ -41,7 +41,7 @@ empty_symbol = "🔋"
 threshold = 20
 
 [conda]
-symbol = "🅒 "
+symbol = "C "
 
 [directory]
 style = "bold 33"
@@ -51,10 +51,10 @@ truncate_to_repo = false
 [docker_context]
 
 [git_branch]
-symbol = "🔀 "
+symbol = ""
 
 [git_commit]
-style = "bg:#E58F73 fg:#111111"
+style = "fg:#111111"
 commit_hash_length = 4
 only_detached = false
 
@@ -77,16 +77,18 @@ ssh_only = true
 trim_at = "."
 
 [jobs]
-symbol = "👷"
+symbol = "J"
 threshold = 1
-style = "bold red"
+style = "bold blue"
 format = "[$symbol$number]($style) "
 
 [package]  # Currently supports npm, cargo, poetry, composer, gradle, julia and mix
 style = "bold fg:94"
+symbol = ""
 display_private = true
 
 [python]
+symbol = ""
 style = "bold 64"
 pyenv_prefix = "pyenv "
 python_binary = "python3"
@@ -95,6 +97,7 @@ python_binary = "python3"
 
 [status]
 disabled = false
+symbol = "X"
 
 [time]
 disabled = true

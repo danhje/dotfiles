@@ -1,4 +1,4 @@
-export PATH="~/.poetry/bin:$PATH"
+export PATH="~/.local/bin:~/.poetry/bin:$PATH"
 
 alias lk="exa -lhar -s modified"
 alias gd="git diff"
@@ -11,7 +11,7 @@ alias gp="git push"
 alias poetry-upgrade="poetry show | cut -d ' ' -f 1 | xargs -i poetry remove {} && poetry add {}"
 alias init="git init;pre-commit install;poetry install;poetry shell"
 alias pre="pre-commit install && pre-commit run --all-files"
-alias re-source="source ~/.zshrc 2>/dev/null ; source ~/.bashrc 2>/dev/null"
+alias re-source=". ~/.zshrc 2>/dev/null ; . ~/.bashrc 2>/dev/null"
 
 function sb() {
     # Starts a process in the background, suppressing any stdout / stderr output.
@@ -20,5 +20,5 @@ function sb() {
 
 # Should remain at the bottom:
 if test -f "~/.localrc"; then
-    source ~/.localrc
+    . ~/.localrc
 fi
