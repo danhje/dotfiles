@@ -1,6 +1,7 @@
 export PATH="~/.local/bin:~/.poetry/bin:$PATH"
 
 alias lk="exa -lhar -s modified"
+
 alias gd="git diff"
 alias ga="git add"
 alias gs="git status"
@@ -12,6 +13,9 @@ alias poetry-upgrade="poetry show | cut -d ' ' -f 1 | xargs -i poetry remove {} 
 alias init="git init;pre-commit install;poetry install;poetry shell"
 alias pre="pre-commit install && pre-commit run --all-files"
 alias re-source=". ~/.zshrc 2>/dev/null ; . ~/.bashrc 2>/dev/null"
+alias p="sb pycharm ."
+alias c="clear"
+
 
 function sb() {
     # Starts a process in the background, suppressing any stdout / stderr output.
