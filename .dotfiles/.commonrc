@@ -24,6 +24,6 @@ function sb() {
 }
 
 # Should remain at the bottom:
-if test -f "~/.localrc"; then
+if test -f ~/.localrc; then
     . ~/.localrc
 fi
