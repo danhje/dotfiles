@@ -54,7 +54,7 @@ truncate_to_repo = false
 symbol = ""
 
 [git_commit]
-style = "fg:#111111"
+style = "fg:#707070"
 commit_hash_length = 4
 only_detached = false
 
