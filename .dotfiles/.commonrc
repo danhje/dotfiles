@@ -4,6 +4,7 @@ alias lk="exa -lhar -s modified"
 
 alias gd="git diff"
 alias ga="git add"
+alias gb="git branch -a"
 alias gs="git status"
 alias gc="git commit"
 alias gl="git log"
