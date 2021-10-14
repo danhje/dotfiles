@@ -7,3 +7,4 @@ plugins=(git)
 . "$ZSH/oh-my-zsh.sh"
 
 eval "$(starship init zsh)"
+eval "$(mcfly init zsh)"

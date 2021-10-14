@@ -22,6 +22,9 @@ mkdir -p ~/.local/bin
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --force --bin-dir ~/.local/bin
 export PATH="~/.local/bin:$PATH"
 
+# Ensure McFly is installed.
+curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly --to ~/.local/bin
+
 # Ensure dotfiles are downloaded.
 mkdir -p ~/.dotfiles
 wget -O ~/.dotfiles/starship.toml "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/starship.toml"
