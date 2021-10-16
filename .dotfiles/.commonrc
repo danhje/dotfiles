@@ -1,4 +1,4 @@
-export PATH="~/.local/bin:~/.poetry/bin:$PATH"
+export PATH=~/.local/bin:~/.poetry/bin:$PATH
 
 alias lk="exa -lhar -s modified"
 
