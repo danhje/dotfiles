@@ -1,6 +1,6 @@
 # `dotfiles`
 
-I use zsh on my Mac, but also have to use bash on other systems from time to time. This repo is my attempt at creating a dotfile schema that provides a similar experience across different shells and OSes, and at the same time allows for local and shell-specific modifications. It can be installed with a one-liner to make 
+I use zsh on my Mac, but also have to use bash on other systems from time to time. This repo is my attempt at creating a dotfile schema that provides a similar experience across different shells and OSes, and at the same time allows for local and shell-specific modifications. It can be installed and updated with a one-liner to make the process of updating to the latest config as quick as possible.
 
 ## Usage
 
