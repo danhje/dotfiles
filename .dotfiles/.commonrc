@@ -4,6 +4,7 @@ export MCFLY_FUZZY=true
 
 alias lk="exa -lhar -s modified"
 
+alias updot="source <(curl -fsSL https://raw.githubusercontent.com/danhje/dotfiles/main/install.sh)"
 alias gd="git diff"
 alias ga="git add"
 alias gb="git branch -a"
