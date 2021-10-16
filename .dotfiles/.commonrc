@@ -1,4 +1,6 @@
 export PATH=~/.local/bin:~/.poetry/bin:$PATH
+export MCFLY_RESULTS=50
+export MCFLY_FUZZY=true
 
 alias lk="exa -lhar -s modified"
 
