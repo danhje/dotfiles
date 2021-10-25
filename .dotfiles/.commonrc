@@ -2,9 +2,25 @@ export PATH=~/.local/bin:~/.poetry/bin:$PATH
 export MCFLY_RESULTS=50
 export MCFLY_FUZZY=true
 
-alias lk="exa -lhar -s modified"
-
+# Meta
 alias updot="source <(curl -fsSL https://raw.githubusercontent.com/danhje/dotfiles/main/install.sh)"
+
+# cd
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias ......='cd ../../../../'
+alias .......='cd ../../../../'
+alias .2='cd ../../../../'
+alias .3='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+alias .6='cd ../../../../..'
+alias .7='cd ../../../../..'
+
+# git
 alias gd="git diff"
 alias ga="git add"
 alias gb="git branch -a"
@@ -13,14 +29,21 @@ alias gc="git commit"
 alias gl="git log"
 alias glo="git log --oneline --graph"
 alias gp="git push"
+
+# poetry
 alias poetry-upgrade="poetry show | cut -d ' ' -f 1 | xargs -i poetry remove {} && poetry add {}"
 alias pru="poetry run"
 alias psh="poetry shell"
+alias pad="poetry add"
+
+# other
 alias init="git init && pre-commit install && poetry install && poetry shell"
 alias pre="pre-commit install && pre-commit run --all-files"
 alias re-source=". ~/.zshrc 2>/dev/null ; . ~/.bashrc 2>/dev/null"
 alias p="sb pycharm ."
+alias lk="exa -lhar -s modified"
 alias c="clear"
+alias grep='grep --color=auto
 
 
 function sb() {
@@ -28,7 +51,7 @@ function sb() {
     $* >/dev/null 2>&1 &
 }
 
-# Should remain at the bottom:
+# Source local rc. Should remain at the bottom.
 if test -f ~/.localrc; then
     . ~/.localrc
 fi
