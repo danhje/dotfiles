@@ -31,7 +31,7 @@ alias glo="git log --oneline --graph"
 alias gp="git push"
 
 # poetry
-alias poetry-upgrade="poetry show | cut -d ' ' -f 1 | xargs -i poetry remove {} && poetry add {}"
+alias poetry-upgrade='poetry show | cut -d ' ' -f 1 | xargs -i poetry remove {} && poetry add {}'
 alias pru="poetry run"
 alias psh="poetry shell"
 alias pad="poetry add"
@@ -39,12 +39,11 @@ alias pad="poetry add"
 # other
 alias init="git init && pre-commit install && poetry install && poetry shell"
 alias pre="pre-commit install && pre-commit run --all-files"
-alias re-source=". ~/.zshrc 2>/dev/null ; . ~/.bashrc 2>/dev/null"
-alias p="sb pycharm ."
+alias re-source='. ~/.zshrc 2>/dev/null ; . ~/.bashrc 2>/dev/null'
+alias p='sb pycharm .'
 alias lk="exa -lhar -s modified"
 alias c="clear"
-alias grep='grep --color=auto
-
+alias grep="grep --color=auto"
 
 function sb() {
     # Starts a process in the background, suppressing any stdout / stderr output.
