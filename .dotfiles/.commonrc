@@ -47,6 +47,17 @@ alias lk="exa -lhar -s modified"
 alias c="clear"
 alias grep="grep --color=auto"
 
+
+function wget0() {
+    rest=$*
+    if [ -z "$rest" ]
+    then
+        rest="8000/data"
+    fi
+    wget -qO- http://0.0.0.0:$rest
+}
+
+
 function sb() {
     # Starts a process in the background, suppressing any stdout / stderr output.
     $* >/dev/null 2>&1 &
