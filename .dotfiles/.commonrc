@@ -29,7 +29,7 @@ alias gc="git commit"
 alias gl="git log"
 alias glo="git log --oneline --graph"
 alias gp="git push"
-alias gamendall="git add . && git commit --amend --no-edit"
+alias gamend="git commit --amend --no-edit"
 alias gforce="git push --force-with-lease"
 
 # poetry
