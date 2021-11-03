@@ -44,7 +44,7 @@ alias pad="poetry add"
 alias init="git init && pre-commit install && poetry install && poetry shell"
 alias pre="pre-commit install && pre-commit run --all-files"
 alias re-source='. ~/.zshrc 2>/dev/null ; . ~/.bashrc 2>/dev/null'
-alias p='sb pycharm .'
+alias p='sb pycharm nosplash .'
 alias lk="exa -lhar -s modified"
 alias c="clear"
 alias grep="grep --color=auto"
