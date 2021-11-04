@@ -36,6 +36,7 @@ alias gforce="git push --force-with-lease"
 
 # poetry
 alias poetry-upgrade='poetry show | cut -d ' ' -f 1 | xargs -i poetry remove {} && poetry add {}'
+alias poetry-rebuild="poetry env remove `poetry env list | awk '{print $1;}'` && poetry install"
 alias pru="poetry run"
 alias psh="poetry shell"
 alias pad="poetry add"
