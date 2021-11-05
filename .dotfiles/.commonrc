@@ -49,6 +49,7 @@ alias p='sb pycharm nosplash .'
 alias lk="exa -lhar -s modified"
 alias c="clear"
 alias grep="grep --color=auto"
+alias t="poetry run pytest"
 
 
 function wget0() {
