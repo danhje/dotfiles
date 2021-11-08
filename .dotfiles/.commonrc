@@ -58,7 +58,7 @@ function wget0() {
     then
         rest="8000/data"
     fi
-    wget -qO- http://0.0.0.0:$rest
+    wget -qO- http://0.0.0.0:$rest | jq
 }
 
 
