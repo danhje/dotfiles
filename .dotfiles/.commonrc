@@ -52,7 +52,7 @@ alias grep="grep --color=auto"
 alias t="poetry run pytest"
 
 
-function wget0() {
+function wg() {
     rest=$*
     if [ -z "$rest" ]
     then
