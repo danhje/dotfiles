@@ -35,7 +35,7 @@ alias gamend="git commit --amend --no-edit"
 alias gforce="git push --force-with-lease"
 
 # poetry
-alias poetry-upgrade='poetry show | cut -d ' ' -f 1 | xargs -i poetry remove {} && poetry add {}'
+alias poetry-upgrade="deps=$(poetry show -t --no-dev | grep '^[[:blank:]]*[^[:blank:]|`]' | cut -d ' ' -f 1 | sed ':b;N;$!bb;s/\n/ /g') && poetry remove $deps && poetry add $deps"  # Currently fails due to https://github.com/python-poetry/poetry/issues/4204
 alias poetry-rebuild="poetry env remove `poetry env list | awk '{print $1;}'` && poetry install"
 alias pru="poetry run"
 alias psh="poetry shell"
