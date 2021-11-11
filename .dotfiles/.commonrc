@@ -52,10 +52,21 @@ alias grep="grep --color=auto"
 alias t="poetry run pytest"
 
 
+function sr() {
+    # Set remote to trach current branch.
+    if [ $(git remote | wc -l) -ne 1 ]; then
+        return
+    fi
+    branch=$(git branch --show-current)
+    remote=$(git remote)
+    git branch --set-upstream-to=$remote/$branch $branch
+}
+
+
 function wg() {
+    # wget and pipe to jq for nice json formatting.
     rest=$*
-    if [ -z "$rest" ]
-    then
+    if [ -z "$rest" ]; then
         rest="8000/data"
     fi
     wget -qO- http://0.0.0.0:$rest | jq
@@ -68,6 +79,6 @@ function sb() {
 }
 
 # Source local rc. Should remain at the bottom.
-if test -f ~/.localrc; then
+if [ -f ~/.localrc ]; then
     . ~/.localrc
 fi
