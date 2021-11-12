@@ -52,6 +52,13 @@ alias grep="grep --color=auto"
 alias t="poetry run pytest"
 
 
+function trash() {
+    # Move file or folder to ~/.trash. If already present, append .~<i>~
+    [ ! -d ~/.trash ] && mkdir ~/.trash
+    mv $* ~/.trash --backup=numbered
+}
+
+
 function sr() {
     # Set remote to trach current branch.
     if [ $(git remote | wc -l) -ne 1 ]; then
