@@ -50,6 +50,17 @@ alias lk="exa -lhar -s modified"
 alias c="clear"
 alias grep="grep --color=auto"
 alias t="poetry run pytest"
+alias listfunc="compgen -A function | grep \"^[^_]\""
+
+
+function crush () {
+    # Kill process listening on specified port (default = 8000)
+    port = $*
+    if [ -z "$port" ]; then
+        port = 8000
+    fi
+    kill $(lsof -i tcp:$port | awk 'NR==2 {print $2}')
+}
 
 
 function trash() {
