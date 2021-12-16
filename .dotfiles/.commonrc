@@ -8,17 +8,17 @@ alias updot="source <(curl -fsSL https://raw.githubusercontent.com/danhje/dotfil
 # cd
 alias cd..='cd ..'
 alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-alias .....='cd ../../../../'
-alias ......='cd ../../../../'
-alias .......='cd ../../../../'
-alias .2='cd ../../../../'
-alias .3='cd ../../../../'
-alias .4='cd ../../../../'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
-alias .6='cd ../../../../..'
-alias .7='cd ../../../../..'
+alias .6='cd ../../../../../..'
+alias .7='cd ../../../../../../..'
 
 # git
 alias ga="git add"
@@ -53,7 +53,7 @@ alias t="poetry run pytest"
 alias listfunc="compgen -A function | grep \"^[^_]\""
 
 
-function crush () {
+function crush() {
     # Kill process listening on specified port (default = 8000)
     port = $*
     if [ -z "$port" ]; then
