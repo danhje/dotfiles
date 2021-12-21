@@ -35,7 +35,6 @@ alias gamend="git commit --amend --no-edit"
 alias gforce="git push --force-with-lease"
 
 # poetry
-alias poetry-upgrade="deps=$(poetry show -t --no-dev | grep '^[[:blank:]]*[^[:blank:]|`]' | cut -d ' ' -f 1 | sed ':b;N;$!bb;s/\n/ /g') && poetry remove $deps && poetry add $deps"  # Currently fails due to https://github.com/python-poetry/poetry/issues/4204
 alias poetry-rebuild="poetry env remove `poetry env list | awk '{print $1;}'` && poetry install"
 alias pru="poetry run"
 alias psh="poetry shell"
@@ -95,6 +94,55 @@ function sb() {
     # Starts a process in the background, suppressing any stdout / stderr output.
     $* >/dev/null 2>&1 &
 }
+
+
+function poetry-update() {
+    deps=$(
+    python3 <<HEREDOC
+    import sys
+    with open("pyproject.toml", "r") as f:
+        lines = f.readlines()
+    in_dep_section = False
+    pkgs = []
+    for line in lines:
+        if "[tool.poetry.dependencies]" in line: in_dep_section = True
+        elif line[0] == "[": in_dep_section = False
+        elif in_dep_section:
+            try:
+                pkgs.append(line.split("=")[0].strip())
+            except IndexError:
+                ...
+    pkgs.remove("python")
+    sys.stdout.write(" ".join(pkgs))
+    sys.stdout.flush()
+    HEREDOC
+    ) && poetry remove $deps && poetry add $deps
+}
+
+
+function poetry-update-dev() {
+    deps=$(
+    python3 <<HEREDOC
+    import sys
+    with open("pyproject.toml", "r") as f:
+        lines = f.readlines()
+    in_dep_section = False
+    pkgs = []
+    for line in lines:
+        if "[tool.poetry.dev-dependencies]" in line: in_dep_section = True
+        elif line[0] == "[": in_dep_section = False
+        elif in_dep_section:
+            try:
+                pkgs.append(line.split("=")[0].strip())
+            except IndexError:
+                ...
+    pkgs.remove("python")
+    sys.stdout.write(" ".join(pkgs))
+    sys.stdout.flush()
+    HEREDOC
+    ) && poetry remove --dev $deps && poetry add --dev $deps
+}
+
 
 # Source local rc. Should remain at the bottom.
 if [ -f ~/.localrc ]; then
