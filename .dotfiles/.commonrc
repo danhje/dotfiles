@@ -97,50 +97,52 @@ function sb() {
 
 
 function poetry-update() {
-    deps=$(
-    python3 <<HEREDOC
-    import sys
-    with open("pyproject.toml", "r") as f:
-        lines = f.readlines()
-    in_dep_section = False
-    pkgs = []
-    for line in lines:
-        if "[tool.poetry.dependencies]" in line: in_dep_section = True
-        elif line[0] == "[": in_dep_section = False
-        elif in_dep_section:
-            try:
-                pkgs.append(line.split("=")[0].strip())
-            except IndexError:
-                ...
-    pkgs.remove("python")
-    sys.stdout.write(" ".join(pkgs))
-    sys.stdout.flush()
-    HEREDOC
-    ) && poetry remove $deps && poetry add $deps
+# Remove and re-add all (non-dev) requirements. PS: This function block must be un-indented for heredoc termination to work. 
+deps=$(
+python3 << EOF
+import sys
+with open("pyproject.toml", "r") as f:
+    lines = f.readlines()
+in_dep_section = False
+pkgs = []
+for line in lines:
+    if "[tool.poetry.dependencies]" in line: in_dep_section = True
+    elif line[0] == "[": in_dep_section = False
+    elif in_dep_section:
+        try:
+            pkgs.append(line.split("=")[0].strip())
+        except IndexError:
+            ...
+pkgs.remove("python")
+sys.stdout.write(" ".join(pkgs))
+sys.stdout.flush()
+EOF
+) && poetry remove $deps && poetry add $deps
 }
 
 
 function poetry-update-dev() {
-    deps=$(
-    python3 <<HEREDOC
-    import sys
-    with open("pyproject.toml", "r") as f:
-        lines = f.readlines()
-    in_dep_section = False
-    pkgs = []
-    for line in lines:
-        if "[tool.poetry.dev-dependencies]" in line: in_dep_section = True
-        elif line[0] == "[": in_dep_section = False
-        elif in_dep_section:
-            try:
-                pkgs.append(line.split("=")[0].strip())
-            except IndexError:
-                ...
-    pkgs.remove("python")
-    sys.stdout.write(" ".join(pkgs))
-    sys.stdout.flush()
-    HEREDOC
-    ) && poetry remove --dev $deps && poetry add --dev $deps
+# Remove and re-add all dev requirements. PS: This function block must be un-indented for heredoc termination to work.
+deps=$(
+python3 << EOF
+import sys
+with open("pyproject.toml", "r") as f:
+    lines = f.readlines()
+in_dep_section = False
+pkgs = []
+for line in lines:
+    if "[tool.poetry.dev-dependencies]" in line: in_dep_section = True
+    elif line[0] == "[": in_dep_section = False
+    elif in_dep_section:
+        try:
+            pkgs.append(line.split("=")[0].strip())
+        except IndexError:
+            ...
+pkgs.remove("python")
+sys.stdout.write(" ".join(pkgs))
+sys.stdout.flush()
+EOF
+) && poetry remove --dev $deps && poetry add --dev $deps
 }
 
 
