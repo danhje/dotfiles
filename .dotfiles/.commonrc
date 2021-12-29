@@ -54,9 +54,9 @@ alias listfunc="compgen -A function | grep \"^[^_]\""
 
 function crush() {
     # Kill process listening on specified port (default = 8000)
-    port = $*
+    port=$*
     if [ -z "$port" ]; then
-        port = 8000
+        port=8000
     fi
     kill $(lsof -i tcp:$port | awk 'NR==2 {print $2}')
 }
