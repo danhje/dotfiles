@@ -52,6 +52,12 @@ alias t="poetry run pytest"
 alias listfunc="compgen -A function | grep \"^[^_]\""
 
 
+function expsec () {
+    # Export secret. Looks up argument in pass, and exports value
+    export "$1"="$(pass show "$1")"
+}
+
+
 function crush() {
     # Kill process listening on specified port (default = 8000)
     port=$*
