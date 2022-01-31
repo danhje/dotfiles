@@ -40,6 +40,10 @@ alias pru="poetry run"
 alias psh="poetry shell"
 alias pad="poetry add"
 
+# docker [compose]
+alias up="docker compose up"
+alias down="docker compose down"
+
 # other
 alias init="git init && pre-commit install && poetry install && poetry shell"
 alias pre="pre-commit install && pre-commit run --all-files"
