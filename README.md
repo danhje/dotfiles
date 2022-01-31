@@ -17,3 +17,5 @@ To update your config to the latest version, simply re-run the command above, or
 ```shell
 updot
 ```
+
+Any system-specific config should be placed in ~/.localrc. Don't edit ~/.bashrc or ~/.zshrc, these will be overwritten when updating as described above.
