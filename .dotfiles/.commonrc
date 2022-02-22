@@ -35,7 +35,7 @@ alias gamend="git commit --amend --no-edit"
 alias gforce="git push --force-with-lease"
 
 # poetry
-alias poetry-rebuild="poetry env remove `poetry env list | awk '{print $1;}'` && poetry install"
+alias poetry-rebuild='poetry env remove $(poetry env list | awk "{print \$1;}") && poetry install'
 alias pru="poetry run"
 alias psh="poetry shell"
 alias pad="poetry add"
