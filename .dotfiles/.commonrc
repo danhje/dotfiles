@@ -22,15 +22,26 @@ alias .7='cd ../../../../../../..'
 
 # git
 alias ga="git add"
+__git_complete ga _git_add
 alias gd="git diff"
+__git_complete gd _git_diff
 alias gds="git diff --staged"
-alias gb="git branch -a"
+alias gb="git branch"
+__git_complete gb _git_branch
+alias gba="git branch -a"
 alias gch="git checkout"
+__git_complete gch _git_checkout
 alias gs="git status"
+__git_complete gs _git_status
 alias gc="git commit"
+__git_complete gc _git_commit
 alias gl="git log"
+__git_complete gl _git_log
 alias glo="git log --oneline --graph"
 alias gp="git push"
+__git_complete gp _git_push
+alias gl="git pull"
+__git_complete gl _git_pull
 alias gamend="git commit --amend --no-edit"
 alias gforce="git push --force-with-lease"
 
