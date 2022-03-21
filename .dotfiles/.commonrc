@@ -42,6 +42,10 @@ alias gp="git push"
 __git_complete gp _git_push
 alias gl="git pull"
 __git_complete gl _git_pull
+alias gr="git reset"
+__git_complete gr _git_reset
+alias grh="git reset --hard"
+__git_complete grh _git_reset
 alias gamend="git commit --amend --no-edit"
 alias gforce="git push --force-with-lease"
 
