@@ -19,3 +19,6 @@ updot
 ```
 
 Any system-specific config should be placed in ~/.localrc. Don't edit ~/.bashrc or ~/.zshrc, these will be overwritten when updating as described above.
+
+
+![Figure](https://raw.githubusercontent.com/danhje/dotfiles/main/explanation.png)
