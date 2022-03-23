@@ -1,6 +1,6 @@
-. ~/.dotfiles/.commonrc
+. /usr/share/bash-completion/completions/git
 
-source /usr/share/bash-completion/completions/git
+. ~/.dotfiles/.commonrc
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
