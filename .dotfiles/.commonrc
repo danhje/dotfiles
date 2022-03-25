@@ -48,6 +48,7 @@ alias grh="git reset --hard"
 __git_complete grh _git_reset
 alias gamend="git commit --amend --no-edit"
 alias gforce="git push --force-with-lease"
+alias grm="git ls-files -c --ignored --exclude-standard -z | xargs -0 git rm --cached"
 
 # poetry
 alias poetry-rebuild='poetry env remove $(poetry env list | awk "{print \$1;}") && poetry install'
