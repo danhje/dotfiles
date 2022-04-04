@@ -46,6 +46,10 @@ alias gr="git reset"
 __git_complete gr _git_reset
 alias grh="git reset --hard"
 __git_complete grh _git_reset
+alias gf="git fetch"
+__git_complete gf _git_fetch
+alias gfa="git fetch --all"
+__git_complete gfa _git_fetch
 alias gamend="git commit --amend --no-edit"
 alias gforce="git push --force-with-lease"
 alias grm="git ls-files -c --ignored --exclude-standard -z | xargs -0 git rm --cached"
