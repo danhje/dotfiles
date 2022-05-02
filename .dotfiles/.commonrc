@@ -113,12 +113,16 @@ function sr() {
 
 
 function wg() {
-    # wget and pipe to jq for nice json formatting.
-    rest=$*
-    if [ -z "$rest" ]; then
-        rest="8000/data"
-    fi
-    wget -qO- http://0.0.0.0:$rest | jq
+    # Like wget, but with defaults. For example, "wg eq" will result in a request to http://eq:8000/data,
+    # as http is default protocol, 8000 the default port and /data the default route.
+    protocol=$(echo $* | grep -Po '^(\w*)(?=:\/\/)'); protocol=${protocol:=http}
+    hostname=$(echo $* | grep -Po '(?<=^|\/|\s)[^\s\/?#:]*(?=$|\s|:(?!\/))'); hostname=${hostname:=localhost}
+    endpoint=$(echo $* | grep -Po '[^\/]\K\/[^\/][^?^#]*'); endpoint=${endpoint:=/data}
+    port=$(echo $* | grep -Po '(?<=:)\d*'); port=:${port:=8000}
+    query=$(echo $* | grep -Po '\?[\w\-=&]*')
+    fragment=$(echo $* | grep -Po '#[\w\-=&#]*')
+    echo "Fetching "$protocol://$hostname$port$endpoint$query$fragment
+    wget -qO- $protocol://$hostname$port$endpoint$query$fragment | jq
 }
 
 
