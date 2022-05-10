@@ -121,7 +121,7 @@ function wg() {
     port=$(echo $* | grep -Po '(?<=:)\d*'); port=:${port:=8000}
     query=$(echo $* | grep -Po '\?[\w\-=&]*')
     fragment=$(echo $* | grep -Po '#[\w\-=&#]*')
-    echo "Fetching "$protocol://$hostname$port$endpoint$query$fragment
+    echo "Fetching "$protocol://$hostname$port$endpoint$query$fragment 1>&2
     wget -qO- $protocol://$hostname$port$endpoint$query$fragment | jq
 }
 
