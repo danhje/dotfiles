@@ -25,6 +25,9 @@ export PATH="~/.local/bin:$PATH"
 # Ensure McFly is installed.
 curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly --to ~/.local/bin
 
+# Ensure zoxide is installed.
+curl -sS https://webinstall.dev/zoxide | bash
+
 # Ensure dotfiles are downloaded.
 mkdir -p ~/.dotfiles
 wget -O ~/.dotfiles/starship.toml "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/starship.toml"
