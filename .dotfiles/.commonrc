@@ -52,7 +52,14 @@ alias gfa="git fetch --all"
 __git_complete gfa _git_fetch
 alias gamend="git commit --amend --no-edit"
 alias gforce="git push --force-with-lease"
-alias grm="git ls-files -c --ignored --exclude-standard -z | xargs -0 git rm --cached"
+alias grm="git ls-files -c --ignored --exclude-standard -z | xargs -0 git rm --cached"  # Forget ignored
+alias gw="git worktree"
+__git_complete gw _git_worktree
+alias gwa="git worktree add"
+__git_complete gwa _git_checkout  # Hack to get branches from tab completion
+alias gwl="git worktree list"
+alias gwr="git worktree remove"
+__git_complete gwr _git_checkout  # Hack to get branches from tab completion
 
 # poetry
 alias poetry-rebuild='poetry env remove $(poetry env list | awk "{print \$1;}") && poetry install'
