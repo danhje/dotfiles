@@ -60,6 +60,7 @@ __git_complete gwa _git_checkout  # Hack to get branches from tab completion
 alias gwl="git worktree list"
 alias gwr="git worktree remove"
 __git_complete gwr _git_checkout  # Hack to get branches from tab completion
+alias gcar="git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 
 # poetry
 alias poetry-rebuild='poetry env remove $(poetry env list | awk "{print \$1;}") && poetry install'
