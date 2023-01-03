@@ -63,10 +63,12 @@ __git_complete gwr _git_checkout  # Hack to get branches from tab completion
 alias gcar="git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 
 # poetry
-alias poetry-rebuild='poetry env remove $(poetry env list | awk "{print \$1;}") && poetry install'
+alias poetry-rebuild='poetry env remove --all && poetry install'
 alias pru="poetry run"
 alias psh="poetry shell"
 alias pad="poetry add"
+alias pin="poetry install"
+alias plo="poetry lock"
 
 # docker [compose]
 alias up="docker compose up"
