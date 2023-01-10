@@ -179,6 +179,46 @@ EOF
 }
 
 
+url_keyword_monitor() {
+    # Scan urls for keywords, alert if number of matches has changed. Create files in ~/.urlmon
+    # Format:
+    # url
+    # keyword
+    # initial number of matches (you can just put 0)
+    if [ ! -d ~/.urlmon ]; then return 0; fi
+    files_count=$(ls -1q ~/.urlmon | wc -l)
+    if [ $files_count -eq 0 ]; then return 0; fi
+    for file in ~/.urlmon/*; do
+        url=$(head -n 1 $file)
+        keyword=$(head -n 2 $file | tail -n 1)
+        prev=$(head -n 3 $file | tail -n 1)
+        count=$(curl -s $url | grep -o $keyword | wc -l)
+        if [ $count -ne $prev ]; then
+            echo "3 The keyword count for $url has changed from $prev to $count." >>$file
+        fi
+        sed -i "3s/$prev/$count/g" $file
+    done
+    for file in ~/.urlmon/*; do
+        total_lines=$(wc -l $file | awk '{print $1}')
+        if [ $total_lines -gt 3 ]; then
+            for i in $(seq 4 $total_lines); do
+                line=$(head -n $i $file | tail -n 1)
+                old_count=$(echo $line | cut -d ' ' -f1)
+                message=$(echo $line | cut -d ' ' -f2-)
+                if [ "$old_count" -gt 0 ]; then
+                    echo -e "\033[0;31m$message\033[0m"
+                    new_count=$((old_count - 1))
+                    sed -i "${i}s/$old_count/$new_count/g" $file
+                else
+                    sed -i "${i}d" $file
+                fi
+            done
+        fi
+    done
+}
+url_keyword_monitor
+
+
 # Source local rc. Should remain at the bottom.
 if [ -f ~/.localrc ]; then
     . ~/.localrc
