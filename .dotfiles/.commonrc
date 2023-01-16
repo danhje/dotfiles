@@ -70,6 +70,14 @@ alias pad="poetry add"
 alias pin="poetry install"
 alias plo="poetry lock"
 
+# OpenShift
+alias ocga="oc get apps"
+alias ocgc="oc get crjonjobs"
+alias ocda="oc delete app"
+alias ocdc="oc delete cronjob"
+alias ocgp="oc get projects"
+alias ocp="oc project"
+
 # docker [compose]
 alias up="docker compose up"
 alias down="docker compose down"
