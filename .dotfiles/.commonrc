@@ -62,6 +62,11 @@ alias gwr="git worktree remove"
 __git_complete gwr _git_checkout  # Hack to get branches from tab completion
 alias gcar="git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 
+function gri() {
+    # Interactive rebase. Specify how many commits to include.
+    git rebase -i HEAD~$*
+}
+
 # poetry
 alias poetry-rebuild='poetry env remove --all && poetry install'
 alias pru="poetry run"
@@ -187,7 +192,7 @@ EOF
 }
 
 
-url_keyword_monitor() {
+function url_keyword_monitor() {
     # Scan urls for keywords, alert if number of matches has changed. Create files in ~/.urlmon
     # Format:
     # url
