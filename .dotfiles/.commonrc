@@ -74,6 +74,8 @@ alias psh="poetry shell"
 alias pad="poetry add"
 alias pin="poetry install"
 alias plo="poetry lock"
+alias plof="trash poetry.lock && poetry lock"
+alias plofi="trash poetry.lock && poetry install"
 
 # OpenShift
 alias ocga="oc get apps"
