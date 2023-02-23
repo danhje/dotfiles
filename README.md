@@ -15,7 +15,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/danhje/dotfiles/main/insta
 
 ⚠️ Warning, this will irrevocably replace your config with mine, and install a bunch of stuff on your system.
 
-To update your config to the latest version, simply re-run the command above, or use the alias:
+To command above is idempotent, so to update your config to the latest version, simply re-run the command, or use the alias:
 
 ```shell
 updot
