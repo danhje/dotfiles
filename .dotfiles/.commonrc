@@ -64,7 +64,7 @@ alias gcar="git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/ori
 
 function gri() {
     # Interactive rebase. Specify how many commits to include.
-    git rebase -i HEAD~$*
+    git rebase -i --autosquash HEAD~$*
 }
 
 # poetry
