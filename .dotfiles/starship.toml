@@ -77,6 +77,7 @@ ssh_only = true
 trim_at = "."
 
 [jobs]
+disabled = true
 symbol = "J"
 threshold = 1
 style = "bold blue"
