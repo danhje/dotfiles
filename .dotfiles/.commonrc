@@ -99,6 +99,12 @@ alias listfunc="compgen -A function | grep \"^[^_]\""
 alias now='date +"%s"'
 
 
+function mcd() {
+    # Create directory and cd into it
+    mkdir "$*" && cd "$*"
+}
+
+
 function expsec () {
     # Export secret. Looks up argument in pass, and exports value
     if [ ! -v $1 ]; then
