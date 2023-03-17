@@ -83,6 +83,7 @@ alias ocgp="oc get projects"
 alias ocp="oc project"
 
 # docker [compose]
+alias dc="docker compose"
 alias up="docker compose up"
 alias down="docker compose down"
 
