@@ -60,6 +60,12 @@ function gri() {
     git rebase -i --autosquash HEAD~$*
 }
 
+# rtx
+function slpy() {
+    # Set local Python version. Usage: slpy 3.11
+    rtx install python@$* ; rtx local python@$*
+}
+
 # poetry
 alias poetry-rebuild='poetry env remove --all && poetry install'
 alias pru="poetry run"
