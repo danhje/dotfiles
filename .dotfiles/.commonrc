@@ -73,6 +73,11 @@ function gri() {
     git rebase -i --autosquash HEAD~$*
 }
 
+function gclb() {
+    # Clone repo as bare, CD into it, and configure stuffs.
+    output=$(git clone --bare $* 2>&1) && directory_name=$(echo "$output" | grep -oE "repository '([^']*)'" | sed -E "s/repository '([^']*)'/\1/") && cd "$directory_name" && git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' && echo "$output"
+}
+
 # rtx
 function slpy() {
     # Set local Python version. Usage: slpy 3.11
