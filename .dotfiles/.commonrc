@@ -14,6 +14,19 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
+function goto() {
+    # Jump straight to specified project directory.
+    cd ~/projects/"$1"
+}
+
+_goto() {
+    # Tab completion for the goto function.
+    # TODO: Make this work for Zsh as well as Bash.
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=( $(compgen -W "$(ls ~/projects/)" -- $cur) )
+}
+complete -F _goto goto
+
 # git
 alias ga="git add"
 __git_complete ga _git_add
