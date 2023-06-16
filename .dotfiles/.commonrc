@@ -14,18 +14,26 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
-function goto() {
+function j() {
     # Jump straight to specified project directory.
     cd ~/projects/"$1"
 }
 
-_goto() {
-    # Tab completion for the goto function.
+j_complete() {
+    # Tab completion for the j function considering only git worktrees.
     # TODO: Make this work for Zsh as well as Bash.
     local cur=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=( $(compgen -W "$(ls ~/projects/)" -- $cur) )
+    local prev=${COMP_WORDS[COMP_CWORD-1]}
+    
+    if [[ $COMP_CWORD -eq 1 ]] ; then
+        COMPREPLY=( $(compgen -W "$(ls ~/projects/)" -- $cur) )
+    else
+        local IFS=$'\n'
+        local worktrees=( $(cd ~/projects/"$prev" && git worktree list | awk '{print $1}' | sed -e "s|^${HOME}/projects/${prev}/||") )
+        COMPREPLY=( $(compgen -W "${worktrees[*]}" -- $cur) )
+    fi
 }
-complete -F _goto goto
+complete -F j_complete j
 
 # git
 alias ga="git add"
