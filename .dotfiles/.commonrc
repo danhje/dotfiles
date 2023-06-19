@@ -15,8 +15,13 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
 function j() {
-    # Jump straight to specified project directory.
-    cd ~/projects/"$1"
+    # Jump straight to specified project directory and optional worktree subdirectory.
+    if [ -z "$2" ]
+    then
+        cd ~/projects/"$1"
+    else
+        cd ~/projects/"$1"/"$2"
+    fi
 }
 
 j_complete() {
