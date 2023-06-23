@@ -25,7 +25,7 @@ function j() {
 }
 
 j_complete() {
-    # Tab completion for the j function considering only git worktrees.
+    # Tab completion for the j function.
     # TODO: Make this work for Zsh as well as Bash.
     local cur=${COMP_WORDS[COMP_CWORD]}
     local prev=${COMP_WORDS[COMP_CWORD-1]}
@@ -39,6 +39,21 @@ j_complete() {
     fi
 }
 complete -F j_complete j
+
+function jw() {
+    # Jump to specified worktree subdirectory in the current git repo.
+    # (The function doesn't do much, the accompanying completion is where the magic happens.)
+    cd ./"$1"
+}
+
+jw_complete() {
+    # Tab completion for the jw function.
+    # TODO: Make this work for Zsh as well as Bash.
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    local worktrees=( $(git worktree list | awk 'NR>1{print $1}' | sed -e "s|^$PWD/||") )
+    COMPREPLY=( $(compgen -W "${worktrees[*]}" -- $cur) )
+}
+complete -F jw_complete jw
 
 # git
 alias ga="git add"
@@ -88,7 +103,7 @@ function gri() {
 
 function gclb() {
     # Clone repo as bare, CD into it, and configure stuffs.
-    output=$(git clone --bare $* 2>&1) && directory_name=$(echo "$output" | grep -oE "repository '([^']*)'" | sed -E "s/repository '([^']*)'/\1/") && cd "$directory_name" && git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' && echo "$output"
+    cd ~/projects && output=$(git clone --bare $* 2>&1) && directory_name=$(echo "$output" | grep -oE "repository '([^']*)'" | sed -E "s/repository '([^']*)'/\1/") && cd "$directory_name" && git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' && echo "$output"
 }
 
 # rtx
