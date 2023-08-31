@@ -106,6 +106,13 @@ function gclb() {
     cd ~/projects && output=$(git clone --bare $* 2>&1) && directory_name=$(echo "$output" | grep -oE "repository '([^']*)'" | sed -E "s/repository '([^']*)'/\1/") && cd "$directory_name" && git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' && echo "$output"
 }
 
+function gsquish {
+    # Create fixup for the provided commit, and immediately autosquash
+    COMMIT_HASH=$1
+    git commit --fixup=$COMMIT_HASH
+    GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash $COMMIT_HASH~1
+}
+
 # rtx
 function slpy() {
     # Set local Python version. Usage: slpy 3.11
