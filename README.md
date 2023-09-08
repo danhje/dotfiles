@@ -15,7 +15,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/danhje/dotfiles/main/insta
 
 ⚠️ Warning, this will irrevocably replace your config with mine, and install a bunch of stuff on your system.
 
-The installaction script is idempotent, so to update your config to the latest version, simply re-run the command above, or use the alias that was defined the first time you ran the installation script:
+The installation script is idempotent, so to update your config to the latest version, simply re-run the command above, or use the alias that was defined the first time you ran the installation script:
 
 ```shell
 updot
