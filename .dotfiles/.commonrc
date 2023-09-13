@@ -43,14 +43,20 @@ complete -F j_complete j
 function jw() {
     # Jump to specified worktree subdirectory in the current git repo.
     # (The function doesn't do much, the accompanying completion is where the magic happens.)
-    cd ./"$1"
+    is_bare=$(git rev-parse --is-bare-repository)
+
+    if [ "$is_bare" == "true" ]; then
+        cd "./$1"
+    else
+        cd "../$1"
+  fi
 }
 
-jw_complete() {
+ jw_complete() {
     # Tab completion for the jw function.
     # TODO: Make this work for Zsh as well as Bash.
     local cur=${COMP_WORDS[COMP_CWORD]}
-    local worktrees=( $(git worktree list | awk 'NR>1{print $1}' | sed -e "s|^$PWD/||") )
+    local worktrees=( $(git worktree list | grep -v '(bare)' | awk -F'/' '{print $NF}' | awk '{print $1}') )
     COMPREPLY=( $(compgen -W "${worktrees[*]}" -- $cur) )
 }
 complete -F jw_complete jw
