@@ -1,5 +1,8 @@
 . ~/.dotfiles/.commonrc
 
+export HISTSIZE=1000
+export SAVEHIST=2000
+
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
