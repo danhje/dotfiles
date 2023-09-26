@@ -14,7 +14,7 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
-function j() {
+j() {
     # Jump straight to specified project directory and optional worktree subdirectory.
     if [ -z "$2" ]
     then
@@ -40,7 +40,7 @@ j_complete() {
 }
 complete -F j_complete j
 
-function jw() {
+jw() {
     # Jump to specified worktree subdirectory in the current git repo.
     # (The function doesn't do much, the accompanying completion is where the magic happens.)
     is_bare=$(git rev-parse --is-bare-repository)
@@ -106,17 +106,17 @@ gwa() {
 }
 __git_complete gwa _git_checkout  # Hack to get branches from tab completion
 
-function gri() {
+gri() {
     # Interactive rebase. Specify how many commits to include.
     git rebase -i --autosquash HEAD~$*
 }
 
-function gclb() {
+gclb() {
     # Clone repo as bare, CD into it, and configure stuffs.
     cd ~/projects && output=$(git clone --bare $* 2>&1) && directory_name=$(echo "$output" | grep -oE "repository '([^']*)'" | sed -E "s/repository '([^']*)'/\1/") && cd "$directory_name" && git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' && echo "$output"
 }
 
-function gsquish {
+gsquish() {
     # Create fixup for the provided commit, and immediately autosquash
     COMMIT_HASH=$1
     git commit --fixup=$COMMIT_HASH
@@ -124,7 +124,7 @@ function gsquish {
 }
 
 # rtx
-function slpy() {
+slpy() {
     # Set local Python version. Usage: slpy 3.11
     rtx install python@$* ; rtx local python@$*
 }
@@ -173,13 +173,13 @@ alias listfunc="compgen -A function | grep \"^[^_]\""
 alias now='date +"%s"'
 
 
-function mcd() {
+mcd() {
     # Create directory and cd into it
     mkdir "$*" && cd "$*"
 }
 
 
-function expsec () {
+expsec () {
     # Export secret. Looks up argument in pass, and exports value
     if [ ! -v $1 ]; then
         export "$1"="$(pass show "$1")"
@@ -187,7 +187,7 @@ function expsec () {
 }
 
 
-function crush() {
+crush() {
     # Kill process listening on specified port (default = 8000)
     port=$*
     if [ -z "$port" ]; then
@@ -197,14 +197,14 @@ function crush() {
 }
 
 
-function trash() {
+trash() {
     # Move file or folder to ~/.trash. If already present, append .~<i>~
     [ ! -d ~/.trash ] && mkdir ~/.trash
     mv $* ~/.trash --backup=numbered
 }
 
 
-function sr() {
+sr() {
     # Set remote to trach current branch.
     if [ $(git remote | wc -l) -ne 1 ]; then
         return
@@ -215,13 +215,13 @@ function sr() {
 }
 
 
-function sb() {
+sb() {
     # Starts a process in the background, suppressing any stdout / stderr output.
     $* >/dev/null 2>&1 &
 }
 
 
-function url_keyword_monitor() {
+url_keyword_monitor() {
     # Scan urls for keywords, alert if number of matches has changed. Create files in ~/.urlmon
     # Format:
     # url
