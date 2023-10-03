@@ -96,8 +96,6 @@ alias grm="git ls-files -c --ignored --exclude-standard -z | xargs -0 git rm --c
 alias gw="git worktree"
 __git_complete gw _git_worktree
 alias gwl="git worktree list"
-alias gwr="git worktree remove"
-__git_complete gwr _git_checkout  # Hack to get branches from tab completion
 alias gcar="git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 
 gwa() {
@@ -105,6 +103,12 @@ gwa() {
     git worktree add $1 && cd $1
 }
 __git_complete gwa _git_checkout  # Hack to get branches from tab completion
+
+gwr() {
+    # Force remove a worktree
+    git worktree remove $1 --force
+}
+__git_complete gwr _git_checkout  # Hack to get branches from tab completion
 
 gri() {
     # Interactive rebase. Specify how many commits to include.
