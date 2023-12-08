@@ -138,14 +138,21 @@ gsr() {
 }
 
 gfu () {
-    # Force update local branch to remote branch
-    if [ $(git remote | wc -l) -ne 1 ]; then
-        return;
-    fi;
+    # Force update local branch to specified ref or remote branch with the same name
+    target_ref="$1"
     branch=$(git branch --show-current);
-    remote=$(git remote);
-    git checkout HEAD^  # Can't force update active branch
-    git branch --force "$branch" "$remote/$branch"
+    
+    if [ -z "$target_ref" ]; then
+            if [ "$(git remote | wc -l)" -ne 1 ]; then
+                echo "Error: Unexpected number of remotes detected."
+                return 1;
+            fi;
+        remote=$(git remote);
+        target_ref="$remote/$branch"
+    fi
+
+    git checkout HEAD^  # Because we can't force update active branch
+    git branch --force "$branch" "$target_ref"
     git checkout "$branch"
 }
 
