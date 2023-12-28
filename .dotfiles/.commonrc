@@ -98,9 +98,35 @@ __git_complete gw _git_worktree
 alias gwl="git worktree list"
 alias gcar="git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 
+get_worktree_root() {
+    # Get the worktree root directory
+    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+        echo "You are not in a Git repository" >&2 ; return 1
+    fi
+
+    if [ "$(git rev-parse --is-bare-repository)" = "true" ]; then
+        pwd
+        return 0
+    fi
+
+    worktree_git_dir="$(git rev-parse --git-dir)"
+    if [ ! -f "$worktree_git_dir/commondir" ]; then
+        echo "Regular git project, not a bare repo" >&2 ; return 1
+    fi
+
+    bare_root_relative_path="$(cat "$worktree_git_dir/commondir")"
+    bare_root_path="$worktree_git_dir/$bare_root_relative_path"
+    realpath -m "$bare_root_path"
+    return 0
+}
+
 gwa() {
     # Add worktree
-    git worktree add $1 && cd $1
+    worktree_root="$(get_worktree_root)"
+    ret_val=$?
+    if [ $ret_val -ne 1 ]; then
+        cd "$worktree_root" && git worktree add "$1" && cd "$1"
+    fi
 }
 __git_complete gwa _git_checkout  # Hack to get branches from tab completion
 
