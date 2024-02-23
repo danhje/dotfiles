@@ -55,7 +55,7 @@ symbol = ""
 
 [git_commit]
 style = "fg:#707070"
-commit_hash_length = 4
+commit_hash_length = 8
 only_detached = false
 
 [git_state]
