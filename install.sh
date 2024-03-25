@@ -50,6 +50,9 @@ mkdir -p ~/.config
 rm -f ~/.config/starship.toml
 ln -s ~/.dotfiles/starship.toml ~/.config/starship.toml
 
+# Configure git
+git config --global core.excludesfile ~/.dotfiles/.gitignore
+
 # Source dotfiles.
 case $shell_name in
     *"zsh"* )
