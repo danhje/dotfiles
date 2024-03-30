@@ -221,7 +221,7 @@ alias down="docker compose down"
 
 # other
 alias init="git init && pre-commit install && poetry install"
-alias pre="pre-commit install && pre-commit run --all-files"
+alias pre="poetry run pre-commit install && poetry run pre-commit run --all-files"
 alias re-source='. ~/.zshrc 2>/dev/null ; . ~/.bashrc 2>/dev/null'
 alias p='sb pycharm nosplash .'
 alias lk="exa -lhar -s modified"
