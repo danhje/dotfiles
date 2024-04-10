@@ -224,7 +224,7 @@ alias init="git init && pre-commit install && poetry install"
 alias pre="poetry run pre-commit install && poetry run pre-commit run --all-files"
 alias re-source='. ~/.zshrc 2>/dev/null ; . ~/.bashrc 2>/dev/null'
 alias p='sb pycharm nosplash .'
-alias pp='pkill -9 java && sb pycharm nosplash .'
+alias pp='pkill -9 java ; sb pycharm nosplash .'
 alias lk="exa -lhar -s modified"
 alias c="clear"
 alias grep="grep --color=auto"
