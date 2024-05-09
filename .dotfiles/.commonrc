@@ -98,7 +98,7 @@ __git_complete gw _git_worktree
 alias gwl="git worktree list"
 alias gcar="git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 
-function gforce() {
+gforce() {
     # Safe force push that ensures all modified commits are our own.
     # Usage: gforce [remote] [branch]
     local remote="${1:-origin}"
@@ -108,7 +108,7 @@ function gforce() {
     git fetch $remote
 
     # Get commits in the remote branch that aren't in the local branch
-    local commits_to_check=$(git log ..$remote/$branch --pretty=format:"%H")
+    local commits_to_check=$(git log ..$remote/$branch --pretty=format:"%h")
 
     if [ -z "$commits_to_check" ]; then
         echo "No commits to check; local branch is up to date with remote."
@@ -118,7 +118,7 @@ function gforce() {
     for commit in $commits_to_check; do
         commit_author_email=$(git log -1 $commit --pretty=format:"%ae")
         if [ "$commit_author_email" != "$user_email" ]; then
-            echo "Commit $commit is authored by $commit_author_email, not by $user_email."
+            echo -e "\033[0;31mError: A force push would affect $commit, authored by $commit_author_email (not you, $user_email).\033[0m"
             return 1
         fi
     done
@@ -126,6 +126,8 @@ function gforce() {
     echo "All affected commits are authored by you. Proceeding to push..."
     git push --force-with-lease $remote $branch
 }
+
+alias gpsf="gforce"
 
 get_worktree_root() {
     # Get the worktree root directory
