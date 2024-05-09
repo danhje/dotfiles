@@ -91,13 +91,41 @@ alias gf="git fetch"
 __git_complete gf _git_fetch
 alias gsu="git submodule init && git submodule update"
 alias gamend="git commit --amend --no-edit"
-alias gforce="git push --force-with-lease"
 alias gresolvelock="git checkout --theirs poetry.lock && poetry lock --no-update && git add poetry.lock"
 alias grm="git ls-files -c --ignored --exclude-standard -z | xargs -0 git rm --cached"  # Forget ignored
 alias gw="git worktree"
 __git_complete gw _git_worktree
 alias gwl="git worktree list"
 alias gcar="git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
+
+function gforce() {
+    # Safe force push that ensures all modified commits are our own.
+    # Usage: gforce [remote] [branch]
+    local remote="${1:-origin}"
+    local branch="${2:-$(git rev-parse --abbrev-ref HEAD)}"
+    local user_email="$(git config user.email)"
+
+    git fetch $remote
+
+    # Get commits in the remote branch that aren't in the local branch
+    local commits_to_check=$(git log ..$remote/$branch --pretty=format:"%H")
+
+    if [ -z "$commits_to_check" ]; then
+        echo "No commits to check; local branch is up to date with remote."
+        return 0
+    fi
+
+    for commit in $commits_to_check; do
+        commit_author_email=$(git log -1 $commit --pretty=format:"%ae")
+        if [ "$commit_author_email" != "$user_email" ]; then
+            echo "Commit $commit is authored by $commit_author_email, not by $user_email."
+            return 1
+        fi
+    done
+
+    echo "All affected commits are authored by you. Proceeding to push..."
+    git push --force-with-lease $remote $branch
+}
 
 get_worktree_root() {
     # Get the worktree root directory
