@@ -270,14 +270,6 @@ mcd() {
 }
 
 
-expsec () {
-    # Export secret. Looks up argument in pass, and exports value
-    if [ ! -v $1 ]; then
-        export "$1"="$(pass show "$1")"
-    fi
-}
-
-
 crush() {
     # Kill process listening on specified port (default = 8000)
     port=$*
