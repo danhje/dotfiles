@@ -34,6 +34,7 @@ wget -O ~/.dotfiles/starship.toml "https://raw.githubusercontent.com/danhje/dotf
 wget -O ~/.dotfiles/.commonrc "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/.commonrc"
 wget -O ~/.dotfiles/.zshrc "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/.zshrc"
 wget -O ~/.dotfiles/.bashrc "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/.bashrc"
+wget -O ~/.dotfiles/.gitignore "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/.gitignore"
 
 # Ensure dotfiles are symlinked.
 case $shell_name in
