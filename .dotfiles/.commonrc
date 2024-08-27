@@ -213,10 +213,10 @@ gfu () {
     git checkout "$branch"
 }
 
-# rtx
+# mise
 slpy() {
-    # Set local Python version. Usage: slpy 3.11
-    rtx install python@$* ; rtx local python@$*
+    # Set local Python version. Usage: slpy 3.12
+    mise install python@$* ; mise local python@$*
 }
 
 # poetry

@@ -28,6 +28,9 @@ curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh 
 # Ensure zoxide is installed.
 curl -sS https://webinstall.dev/zoxide | bash
 
+# Ensure mise is installed.
+curl https://mise.run | sh
+
 # Ensure dotfiles are downloaded.
 mkdir -p ~/.dotfiles
 wget -O ~/.dotfiles/starship.toml "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/starship.toml"

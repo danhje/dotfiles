@@ -12,6 +12,7 @@ zstyle ':omz:update' mode auto
 plugins=(git)
 . "$ZSH/oh-my-zsh.sh"
 
+eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
 eval "$(mcfly init zsh)"
 eval "$(zoxide init zsh)"
