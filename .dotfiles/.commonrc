@@ -282,8 +282,28 @@ crush() {
 
 trash() {
     # Move file or folder to ~/.trash. If already present, append .~<i>~
-    [ ! -d ~/.trash ] && mkdir ~/.trash
+    mkdir -p ~/.trash
     mv $* ~/.trash --backup=numbered
+}
+
+
+backup() {
+    # Copy file or folder to ~/.backup. If already present, append .~<i>~
+    mkdir -p ~/.backup
+
+    base_name=$(basename "$1")
+    target="$HOME/.backup/$base_name"
+
+    if [ -e "$target" ]; then
+        i=1
+        while [ -e "$target.~$i~" ]; do
+            i=$((i + 1))
+        done
+        target="$target.~$i~"
+    fi
+
+    mkdir -p "$(dirname "$target")"
+    cp -r "$1" "$target"
 }
 
 
