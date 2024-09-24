@@ -79,8 +79,6 @@ __git_complete gc _git_commit
 alias gl="git log"
 __git_complete gl _git_log
 alias glo="git log --oneline --graph"
-alias gps="git push"
-__git_complete gps _git_push
 alias gpl="git pull"
 __git_complete gpl _git_pull
 alias gr="git reset"
@@ -183,6 +181,29 @@ gsquish() {
     git commit --fixup=$COMMIT_HASH
     GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash $COMMIT_HASH~1
 }
+
+gps() {
+    # Git push that also sets upstream.
+    branch=$(git branch --show-current)
+    if [ -z "$branch" ]; then
+        echo "Error: You are not currently on any branch."
+        return 1
+    fi
+
+    remotes=$(git remote)
+    num_remotes=$(echo "$remotes" | wc -l)
+    if [ "$num_remotes" -eq 0 ]; then
+        echo "Error: No remotes found."
+        return 1
+    elif [ "$num_remotes" -gt 1 ]; then
+        echo "Error: More than one remote found. Specify manually."
+        return 1
+    fi
+
+    remote=$(echo "$remotes")
+    git push --set-upstream "$remote" "$branch"
+}
+__git_complete gps _git_push
 
 gsr() {
     # Set remote to trach current branch.
