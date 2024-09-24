@@ -55,6 +55,7 @@ ln -s ~/.dotfiles/starship.toml ~/.config/starship.toml
 git config --global core.excludesfile ~/.dotfiles/.gitignore
 git config --global core.editor "vim"
 git config --global push.autoSetupRemote true
+git config --global init.defaultBranch main
 
 # Source dotfiles.
 case $shell_name in
