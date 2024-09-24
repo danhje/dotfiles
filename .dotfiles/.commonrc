@@ -233,7 +233,7 @@ alias penrui="poetry env remove --all && poetry env use python && poetry install
 # uv
 alias uvr="uv run"
 alias uva="uv add"
-alias uvr="uv remove"
+alias uvre="uv remove"
 alias uvs="uv sync"
 alias uvp="uv python"
 alias uvpl="uv python list"
