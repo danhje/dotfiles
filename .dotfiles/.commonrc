@@ -255,14 +255,14 @@ alias up="docker compose up"
 alias down="docker compose down"
 
 # other
-alias init="git init && pre-commit install && poetry install"
-alias pre="poetry run pre-commit install && poetry run pre-commit run --all-files"
+alias init="git init && uv sync && uv run pre-commit install"
+alias pre="uv run pre-commit install && uv run pre-commit run --all-files"
 alias re-source='. ~/.zshrc 2>/dev/null ; . ~/.bashrc 2>/dev/null'
 alias lk="exa -lhar -s modified"
 alias c="clear"
 alias grep="grep --color=auto"
-alias t="poetry run pytest"
-alias ts="poetry run pytest --tb=no --disable-warnings"
+alias t="uv run pytest"
+alias ts="uv run pytest --tb=no --disable-warnings"
 alias listfunc="compgen -A function | grep \"^[^_]\""
 alias now='date +"%s"'
 
