@@ -8,7 +8,6 @@ export HISTFILESIZE=2000
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-eval "$(mise activate bash)"
 eval "$(starship init bash)"
 eval "$(mcfly init bash)"
 eval "$(zoxide init bash)"
