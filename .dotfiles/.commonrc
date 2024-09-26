@@ -278,7 +278,6 @@ alias down="docker compose down"
 # other
 alias init="git init && uv sync && uv run pre-commit install"
 alias pre="uv run pre-commit install && uv run pre-commit run --all-files"
-alias re-source='. ~/.zshrc 2>/dev/null ; . ~/.bashrc 2>/dev/null'
 alias lk="exa -lhar -s modified"
 alias c="clear"
 alias grep="grep --color=auto"
@@ -286,6 +285,19 @@ alias t="uv run pytest"
 alias ts="uv run pytest --tb=no --disable-warnings"
 alias listfunc="compgen -A function | grep \"^[^_]\""
 alias now='date +"%s"'
+
+
+re-source() {
+    # Source rc files
+    case $shell_name in
+        *"zsh"* )
+            test -e ~/.zshrc && . ~/.zshrc
+            ;;
+        *"bash"* )
+            test -e ~/.bashrc && . ~/.bashrc
+            ;;
+    esac
+}
 
 
 mcd() {
@@ -338,6 +350,4 @@ sb() {
 
 
 # Source local rc. Should remain at the bottom.
-if [ -f ~/.localrc ]; then
-    . ~/.localrc
-fi
+test -e ~/.localrc && . ~/.localrc
