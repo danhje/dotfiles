@@ -150,15 +150,23 @@ get_worktree_root() {
 }
 
 gwa() {
-    # Add worktree
+    # Add worktree from existing branch
+    worktree_root="$(get_worktree_root)"
+    ret_val=$?
+    if [ $ret_val -ne 1 ]; then
+        cd "$worktree_root" && git worktree add "$1" "$1" && cd "$1"
+    fi
+}
+__git_complete gwa _git_checkout  # Hack to get branches from tab completion
+
+gwan() {
+    # Add worktree with new branch
     worktree_root="$(get_worktree_root)"
     ret_val=$?
     if [ $ret_val -ne 1 ]; then
         cd "$worktree_root" && git worktree add "$1" && cd "$1"
     fi
 }
-__git_complete gwa _git_checkout  # Hack to get branches from tab completion
-
 gwr() {
     # Force remove a worktree
     git worktree remove $1 --force
@@ -201,7 +209,7 @@ gps() {
     fi
 
     remote=$(echo "$remotes")
-    git push --set-upstream "$remote" "$branch"
+    git push --set-upstream "$remote" "$branch" $*
 }
 __git_complete gps _git_push
 
