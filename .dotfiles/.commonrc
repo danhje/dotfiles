@@ -260,6 +260,7 @@ alias penru="poetry env remove --all && poetry env use python"
 alias penrui="poetry env remove --all && poetry env use python && poetry install"
 
 # uv
+export UV_PYTHON_PREFERENCE="only-managed"
 alias uvr="uv run"
 alias uva="uv add"
 alias uvre="uv remove"
