@@ -1,4 +1,6 @@
 endpoints.http
 .tool-versions
+.python-version
+.python-versions
 .idea/
 _ign*
