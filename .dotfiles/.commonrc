@@ -298,14 +298,8 @@ alias now='date +"%s"'
 
 re-source() {
     # Source rc files
-    case $shell_name in
-        *"zsh"* )
-            test -e ~/.zshrc && . ~/.zshrc
-            ;;
-        *"bash"* )
-            test -e ~/.bashrc && . ~/.bashrc
-            ;;
-    esac
+    test -e ~/.zshrc && . ~/.zshrc
+    test -e ~/.bashrc && . ~/.bashrc
 }
 
 
