@@ -154,7 +154,7 @@ gwa() {
     worktree_root="$(get_worktree_root)"
     ret_val=$?
     if [ $ret_val -ne 1 ]; then
-        cd "$worktree_root" && git worktree add "$1" "$1" && cd "$1"
+        cd "$worktree_root" && git worktree add "$1" "$1" && cd "$1" && gsr
     fi
 }
 __git_complete gwa _git_checkout  # Hack to get branches from tab completion
