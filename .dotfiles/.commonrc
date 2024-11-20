@@ -154,7 +154,7 @@ gwa() {
     worktree_root="$(get_worktree_root)"
     ret_val=$?
     if [ $ret_val -ne 1 ]; then
-        cd "$worktree_root" && git worktree add "$1" "$1" && cd "$1" && gsr
+        cd "$worktree_root" && git worktree add "$1" "$1" && cd "$1" && gsu
     fi
 }
 __git_complete gwa _git_checkout  # Hack to get branches from tab completion
@@ -213,8 +213,8 @@ gps() {
 }
 __git_complete gps _git_push
 
-gsr() {
-    # Set remote to trach current branch.
+gsu() {
+    # Track an upstream with the same name as the current branch.
     if [ $(git remote | wc -l) -ne 1 ]; then
         return
     fi
@@ -222,6 +222,8 @@ gsr() {
     remote=$(git remote)
     git branch --set-upstream-to=$remote/$branch $branch
 }
+
+alias gsr="gsu"
 
 gfu() {
     # Force update local branch to specified ref or remote branch with the same name
