@@ -81,8 +81,16 @@ __git_complete gl _git_log
 alias glo="git log --oneline --graph"
 alias gpl="git pull"
 __git_complete gpl _git_pull
-alias gr="git reset"
-__git_complete gr _git_reset
+alias gre="git reset"
+__git_complete gre _git_reset
+alias greh="git reset --hard"
+__git_complete greh _git_reset
+alias grs="git restore"
+__git_complete grs _git_restore
+alias grb="git rebase"
+__git_complete grb _git_rebase
+alias grbc="git rebase --continue"
+alias grba="git rebase --abort"
 alias grh="git reset --hard"
 __git_complete grh _git_reset
 alias gf="git fetch"
