@@ -175,8 +175,18 @@ gwan() {
     fi
 }
 gwr() {
-    # Force remove a worktree
-    git worktree remove $1 --force
+    # Force remove a worktree, with a backup to ~/.trash
+    local worktree=$1
+    local abs_worktree_path=$(git worktree list | awk -v worktree="$worktree" '$1 ~ worktree {print $1}')
+
+    if [ -z "$abs_worktree_path" ]; then
+        echo "Error: Worktree '$worktree' not found." >&2
+        return 1
+    fi
+
+    mkdir -p ~/.trash
+    mv "$abs_worktree_path" ~/.trash --backup=numbered
+    git worktree remove "$worktree" --force
 }
 __git_complete gwr _git_checkout  # Hack to get branches from tab completion
 
