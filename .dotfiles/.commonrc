@@ -16,6 +16,7 @@ alias .4='cd ../../../..'
 
 j() {
     # Jump straight to specified project directory and optional worktree subdirectory.
+    # (The function doesn't do much, the accompanying completion is where the magic happens.)
     if [ -z "$2" ]
     then
         cd ~/projects/"$1"
@@ -280,6 +281,7 @@ alias penrui="poetry env remove --all && poetry env use python && poetry install
 
 # uv
 export UV_PYTHON_PREFERENCE="only-managed"
+export UV_LINK_MODE="copy"
 alias uvr="uv run"
 alias uva="uv add"
 alias uvre="uv remove"
