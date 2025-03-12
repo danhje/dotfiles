@@ -1,4 +1,3 @@
-export PATH=~/.local/bin:~/.poetry/bin:$PATH
 export MCFLY_RESULTS=50
 export MCFLY_FUZZY=true
 
@@ -97,7 +96,7 @@ __git_complete grh _git_reset
 alias gf="git fetch"
 __git_complete gf _git_fetch
 alias gamend="git commit --amend --no-edit"
-alias gresolvelock="git checkout --theirs poetry.lock && poetry lock --no-update && git add poetry.lock"
+alias gresolvelock="git checkout --theirs uv.lock && uv lock --no-update && git add uv.lock"
 alias grm="git ls-files -c --ignored --exclude-standard -z | xargs -0 git rm --cached"  # Forget ignored
 alias gw="git worktree"
 __git_complete gw _git_worktree
