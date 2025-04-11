@@ -318,15 +318,10 @@ alias now='date +"%s"'
 
 re-source() {
     # Source rc files
-
-    if [ "$1" = "--force" ]; then
-        FORCE_EXPSEC=1
-    else
-        unset FORCE_EXPSEC
-    fi
-
+    MANUAL_SOURCING=1
     test -e ~/.zshrc && . ~/.zshrc
     test -e ~/.bashrc && . ~/.bashrc
+    unset MANUAL_SOURCING
 }
 
 
