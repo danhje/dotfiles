@@ -1,6 +1,10 @@
 export MCFLY_RESULTS=50
 export MCFLY_FUZZY=true
 
+[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+
 # Meta
 alias updot="source <(curl -fsSL https://raw.githubusercontent.com/danhje/dotfiles/main/install.sh)"
 
