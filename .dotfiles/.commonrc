@@ -201,7 +201,10 @@ gri() {
 
 gclb() {
     # Clone repo as bare, CD into it, and configure stuffs.
-    cd ~/projects && output=$(git clone --bare $* 2>&1) && directory_name=$(echo "$output" | grep -oE "repository '([^']*)'" | sed -E "s/repository '([^']*)'/\1/") && cd "$directory_name" && git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' && echo "$output"
+    local base_dir="${HOME/projects}"
+    base_dir="$(resolve_project_base_dir "$*" 2>/dev/null || echo "$base_dir")"
+
+    mkdir -p "$base_dir" && cd "$base_dir" && output=$(git clone --bare $* 2>&1) && directory_name=$(echo "$output" | grep -oE "repository '([^']*)'" | sed -E "s/repository '([^']*)'/\1/") && cd "$directory_name" && git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' && echo "$output"
 }
 
 gsquish() {
