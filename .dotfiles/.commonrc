@@ -287,7 +287,7 @@ alias penrui="poetry env remove --all && poetry env use python && poetry install
 
 # uv
 export UV_PYTHON_PREFERENCE="only-managed"
-export UV_LINK_MODE="copy"
+# export UV_LINK_MODE="copy"
 alias uvr="uv run"
 alias uva="uv add"
 alias uvre="uv remove"
