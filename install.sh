@@ -36,6 +36,17 @@ wget -O ~/.dotfiles/.zshrc "https://raw.githubusercontent.com/danhje/dotfiles/ma
 wget -O ~/.dotfiles/.bashrc "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/.bashrc"
 wget -O ~/.dotfiles/.gitignore "https://raw.githubusercontent.com/danhje/dotfiles/main/.dotfiles/.gitignore"
 
+# Ensure scripts are downloaded to ~/scripts and made executable.
+mkdir -p ~/scripts
+scripts_url="https://api.github.com/repos/danhje/dotfiles/contents/.dotfiles/scripts"
+scripts=$(curl -s "$scripts_url" | grep '"download_url"' | cut -d '"' -f 4)
+
+for url in $scripts; do
+    script_name=$(basename "$url")
+    wget -nc -O ~/scripts/"$script_name" "$url"
+    chmod +x ~/scripts/"$script_name"
+done
+
 # Ensure dotfiles are symlinked.
 case $shell_name in
     *"zsh"* )
