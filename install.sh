@@ -40,11 +40,20 @@ wget -O ~/.dotfiles/.gitignore "https://raw.githubusercontent.com/danhje/dotfile
 mkdir -p ~/scripts
 scripts_url="https://api.github.com/repos/danhje/dotfiles/contents/.dotfiles/scripts"
 scripts=$(curl -s "$scripts_url" | grep '"download_url"' | cut -d '"' -f 4)
-
 for url in $scripts; do
     script_name=$(basename "$url")
     wget -nc -O ~/scripts/"$script_name" "$url"
     chmod +x ~/scripts/"$script_name"
+done
+
+# Ensure executables are downloaded to ~/.local/bin and made executable.
+mkdir -p ~/.local/bin
+bin_url="https://api.github.com/repos/danhje/dotfiles/contents/.dotfiles/bin"
+bins=$(curl -s "$bin_url" | grep '"download_url"' | cut -d '"' -f 4)
+for url in $bins; do
+    bin_name=$(basename "$url")
+    wget -nc -O ~/.local/bin/"$bin_name" "$url"
+    chmod +x ~/.local/bin/"$bin_name"
 done
 
 # Ensure dotfiles are symlinked.

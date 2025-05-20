@@ -92,7 +92,8 @@ display_private = true
 symbol = ""
 style = "bold 64"
 pyenv_prefix = "pyenv "
-python_binary = "python3"
+python_binary = "ptn"
+format = '[${version}]($style)'
 
 [shlvl]
 
