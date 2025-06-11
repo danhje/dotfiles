@@ -175,9 +175,15 @@ gwan() {
     worktree_root="$(get_worktree_root)"
     ret_val=$?
     if [ $ret_val -ne 1 ]; then
-        cd "$worktree_root" && git worktree add "$1" && cd "$1"
+        git fetch
+        if git ls-remote --heads origin main | grep -q 'refs/heads/main'; then
+            cd "$worktree_root" && git worktree add -b "$1" "$1" origin/main && cd "$1"
+        else
+            cd "$worktree_root" && git worktree add "$1" && cd "$1"
+        fi
     fi
 }
+
 gwr() {
     # Force remove a worktree, with a backup to ~/.trash
     local worktree=$1
