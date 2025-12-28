@@ -1,2 +1,9 @@
 #!/usr/bin/env bash
-$(uv python find) "$@"
+
+if [[ "$1" == "--version" || "$1" == "-V" ]]; then
+    echo "Python $(uv python find --show-version)"
+    exit 0
+fi
+
+# Fallback if something actually expects a real python instance
+exec "$(uv python find)" "$@"
