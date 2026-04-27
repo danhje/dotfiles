@@ -94,7 +94,7 @@ symbol = ""
 style = "bold 64"
 pyenv_prefix = "pyenv "
 python_binary = "ptn"
-format = '[${version}]($style)'
+format = '[${version}]($style) '
 
 [shlvl]
 
