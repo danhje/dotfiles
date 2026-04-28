@@ -4,3 +4,4 @@ endpoints.http
 .python-versions
 .idea/
 _ign*
+_temp*
