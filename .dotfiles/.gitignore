@@ -5,3 +5,4 @@ endpoints.http
 .idea/
 _ign*
 _temp*
+tmp/
